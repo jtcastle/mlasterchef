@@ -61,13 +61,12 @@ class GPT2Dataset(Dataset):
     return self.input_ids[idx], self.attn_masks[idx] 
 
 def load_recipes():
-    with open(path.join('data', 'tokens.pkl'), 'rb') as f:
-        recipes = pickle.load(f)
-    return recipes
-
-r = load_recipes()
-r_test = r[1][5].split('; ')
-r_test.remove('')
+    try:
+        with open('./polls/data/tokens.pkl', 'rb') as f:
+            recipes = pickle.load(f)
+        return recipes
+    finally:
+        return None
 
 def clean_ing(ing):
     ing_list = ing.split()
@@ -99,7 +98,7 @@ def load_data_and_models():
     #tokenizer.add_special_tokens(
     #	{'additional_special_tokens': ['<|startofing|>', '<|endofing|>', '<|ingseparator|>']}
     #)
-    tokenizer = GPT2Tokenizer.from_pretrained("../models/tokenizer/Ing")
+    tokenizer = GPT2Tokenizer.from_pretrained("./polls/gpt2_models/tokenizer/Ing")
     dataset = GPT2Dataset(recipe_steps, tokenizer, max_length=850)
 
     # Split into training and validation sets
@@ -132,7 +131,7 @@ def load_data_and_models():
     configuration = GPT2Config.from_pretrained('gpt2', output_hidden_states=False)
 
     # instantiate the model
-    model = GPT2LMHeadModel.from_pretrained("../models/TrainRecipeBox/Ing")#"gpt2", config=configuration)#('./models/RecipeBoxTrained')#
+    model = GPT2LMHeadModel.from_pretrained("./polls/gpt2_models/TrainRecipeBox/Ing")#"gpt2", config=configuration)#('./models/RecipeBoxTrained')#
 
     # this step is necessary because I've added some tokens (bos_token, etc) to the embeddings
     # otherwise the tokenizer and model tensors won't match up
@@ -152,16 +151,17 @@ def load_data_and_models():
 
     return model, validation_dataloader, tokenizer, device
 
-
+import os
 def load_models_only():
     ## Model and tokeniser
     #tokenizer = GPT2Tokenizer.from_pretrained('gpt2', bos_token='<|startoftext|>', eos_token='<|endoftext|>', pad_token='<|pad|>') #gpt2-medium
     #tokenizer.add_special_tokens(
     #	{'additional_special_tokens': ['<|startofing|>', '<|endofing|>', '<|ingseparator|>']}
     #)
-    tokenizer = GPT2Tokenizer.from_pretrained("../models/tokenizer/Ing")
+
+    tokenizer = GPT2Tokenizer.from_pretrained("./polls/gpt2_models/tokenizer/Ing")
     # instantiate the model
-    model = GPT2LMHeadModel.from_pretrained("../models/TrainRecipeBox/Ing")#"gpt2", config=configuration)#('./models/RecipeBoxTrained')#
+    model = GPT2LMHeadModel.from_pretrained("./polls/gpt2_models/TrainRecipeBox/Ing")#"gpt2", config=configuration)#('./models/RecipeBoxTrained')#
 
     # this step is necessary because I've added some tokens (bos_token, etc) to the embeddings
     # otherwise the tokenizer and model tensors won't match up
@@ -244,6 +244,7 @@ def generate_sample_from_user(model, ing_list, tokenizer, device, complete=True)
         top_k=50, max_length = 200, top_p=0.95, num_return_sequences=1
                         )
 
+    output = None
     for i, sample_output in enumerate(sample_outputs):
         if i==1:
             output = tokenizer.decode(sample_output, skip_special_tokens=False)
@@ -255,11 +256,15 @@ def generate_sample_from_user(model, ing_list, tokenizer, device, complete=True)
             output = output.replace(' <|ingseparator|> ', ",\n  ~")
 
             output = output.replace('. ', ".\n   -")
-            output = output.replace('.\n', ".\n   -")
 
-            print(output)
+    return output
+    #print("{}: {}".format(i, tokenizer.decode(sample_output, skip_special_tokens=False)))
 
-            #print("{}: {}".format(i, tokenizer.decode(sample_output, skip_special_tokens=False)))
+def get_recipe_with_string_input(ing_list, complete):
+    model, tokenizer, device = load_models_only()
+    ing_list = ing_list.lower().split(', ')
+    return generate_sample_from_user(model, ing_list, tokenizer, device, complete=complete)
+
 
 if __name__ == '__main__':
     #model, validation_dataloader, tokenizer, device = load_data_and_models()
@@ -274,7 +279,7 @@ if __name__ == '__main__':
 
     complete = True if complete_q.lower() == 'y' else False
 
-    generate_sample_from_user(model, ing_list, tokenizer, device, complete=complete)
+    print(generate_sample_from_user(model, ing_list, tokenizer, device, complete=complete))
 
 
 
