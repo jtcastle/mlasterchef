@@ -4,7 +4,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib import admin
 import sys
-sys.path.append('C:\\Users\\graha\\Documents\\GridSpaceStuff\\Django\\mysite\\polls\\scripts')
+sys.path.append('..\\mysite-Phoebes')
 
 from interface import get_recipe_with_string_input
 

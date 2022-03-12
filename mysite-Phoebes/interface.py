@@ -61,12 +61,7 @@ class GPT2Dataset(Dataset):
     return self.input_ids[idx], self.attn_masks[idx] 
 
 def load_recipes():
-    try:
-        with open('./polls/data/tokens.pkl', 'rb') as f:
-            recipes = pickle.load(f)
-        return recipes
-    finally:
-        return None
+    return None
 
 def clean_ing(ing):
     ing_list = ing.split()
@@ -154,14 +149,16 @@ def load_data_and_models():
 import os
 def load_models_only():
     ## Model and tokeniser
-    #tokenizer = GPT2Tokenizer.from_pretrained('gpt2', bos_token='<|startoftext|>', eos_token='<|endoftext|>', pad_token='<|pad|>') #gpt2-medium
-    #tokenizer.add_special_tokens(
-    #	{'additional_special_tokens': ['<|startofing|>', '<|endofing|>', '<|ingseparator|>']}
-    #)
+    tokenizer = GPT2Tokenizer.from_pretrained('gpt2', bos_token='<|startoftext|>', eos_token='<|endoftext|>', pad_token='<|pad|>') #gpt2-medium
+    tokenizer.add_special_tokens(
+    	{'additional_special_tokens': ['<|startofing|>', '<|endofing|>', '<|ingseparator|>']}
+    )
 
     tokenizer = GPT2Tokenizer.from_pretrained("./polls/gpt2_models/tokenizer/Ing")
     # instantiate the model
-    model = GPT2LMHeadModel.from_pretrained("./polls/gpt2_models/TrainRecipeBox/Ing")#"gpt2", config=configuration)#('./models/RecipeBoxTrained')#
+    configuration = GPT2Config.from_pretrained('gpt2', output_hidden_states=False)
+
+    model = GPT2LMHeadModel.from_pretrained("gpt2", config=configuration)#"./polls/gpt2_models/TrainRecipeBox/Ing")#"gpt2", config=configuration)#('./models/RecipeBoxTrained')#
 
     # this step is necessary because I've added some tokens (bos_token, etc) to the embeddings
     # otherwise the tokenizer and model tensors won't match up
