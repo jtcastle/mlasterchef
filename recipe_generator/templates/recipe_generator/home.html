@@ -9,6 +9,10 @@
 </head>
 <body>
     <h1>Hello World</h1>
+
+    <form action="{% url 'output'%}" method="get">
+        <input name="q" type="text" placeholder="Enter a comma separated list of ingredients">
+    </form>
     
 </body>
 </html>
