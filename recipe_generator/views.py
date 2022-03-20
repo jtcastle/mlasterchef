@@ -35,18 +35,21 @@ class OutputPageView(ListView):
 #        return IngredientList.objects
 
 def home(request):
+
     if request.method == "POST":
         ing_form = IngredientListForm(request.POST)
         if ing_form.is_valid():
-            ing_form.save()
-            messages.success(request, ('Your movie was successfully added!'))
+            ing_form = ing_form.save()
+            context = {"ing_list_obj": ing_form}
+            messages.success(request, ('Your ingredients were successfully added!'))
         else:
             messages.error(request, 'Error saving form')
-        return redirect("main/home.html")
+        return redirect('recipe_generator/output.html')
+    
     ing_form = IngredientListForm()
     saved_ingredient_lists = IngredientList.objects.all()
-    return render(request=request, template_name="main/home.html", context={'ing_form':ing_form, 'saved_ingredient_lists':saved_ingredient_lists})
+    return render(request=request, template_name='recipe_generator/home.html', context={'ing_form':ing_form, 'saved_ingredient_lists':saved_ingredient_lists})
 
-def output(request, ing_list_obj_id):
-    ing_list_obj =  get_object_or_404(IngredientList, pk=ing_list_obj_id)
+def output(request):
+    ing_list_obj =  IngredientList.objects.last()# get_object_or_404(IngredientList, pk=ing_list_obj_id)
     return render(request, 'recipe_generator/output.html', {'ing_list_obj': ing_list_obj,})

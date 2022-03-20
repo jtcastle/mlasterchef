@@ -22,7 +22,3 @@ class IngredientList(models.Model):
     def __str__(self):
         return self.tag
 
-class IngredientListForm(ModelForm):
-    class Meta:
-        model = IngredientList
-        exclude = ['recipe']
