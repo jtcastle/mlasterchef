@@ -1,1 +1,58 @@
 /* This is the main css styling page for the landing page */
+
+/* Todo: */
+/* add css variables for colors */
+
+body {
+    background-color: #e5ecec;
+}
+
+/* Light color hex is #e5ecec */
+/* Darker accent colors are #1e5f49 */
+
+h2 {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: bold;
+}
+
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+    margin: auto;
+    text-align: center;
+}
+
+input {
+    width: 50%;
+    padding: 14px 20px;
+    border-radius: 30px;
+  }
+  
+  input:focus {
+    border: 4px solid #1e5f49;
+    border-radius: 30px;
+  }
+
+.animation {
+    display: block;
+    margin-left: auto;
+	margin-right: auto;
+    padding: 20px 20px;
+}
+
+.column25 {
+	box-sizing: border-box;
+	float: left;
+	width: calc(33% - 10px);
+	margin: 5px;
+	text-align: center;
+    border: solid;
+    border-color: #1e5f49;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-radius: 20px;
+	background-image: linear-gradient(#1e5f49, #e5ecec);
+	font-weight: bold;
+}
