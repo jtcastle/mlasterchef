@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 import sys
 sys.path.append('.\\scripts')
 
@@ -20,3 +21,8 @@ class IngredientList(models.Model):
     
     def __str__(self):
         return self.tag
+
+class IngredientListForm(ModelForm):
+    class Meta:
+        model = IngredientList
+        exclude = ['recipe']

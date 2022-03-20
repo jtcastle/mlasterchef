@@ -17,9 +17,16 @@
         <h1>MLaster Chef Recipe Generator</h1>
     </div>
 
-    <form class="center" action="{% url 'output'%}" method="get">
+    <form method="POST" class="center" action="{% url 'output'%}">
         <input name="q" type="text" placeholder="Enter a comma separated list of ingredients">
+        {% csrf_token %}
+            {{ ing_form }}
+        <button class="btn btn-primary my-4" type="submit">Submit</button>
     </form>
+
+    <!-- <form class="center" action="{% url 'output'%}" method="get"> -->
+        <!-- <input name="q" type="text" placeholder="Enter a comma separated list of ingredients"> -->
+    <!-- </form> -->
 
     <span></span>
 
