@@ -93,7 +93,7 @@ def load_data_and_models():
     #tokenizer.add_special_tokens(
     #	{'additional_special_tokens': ['<|startofing|>', '<|endofing|>', '<|ingseparator|>']}
     #)
-    tokenizer = GPT2Tokenizer.from_pretrained("./polls/gpt2_models/tokenizer/Ing")
+    tokenizer = GPT2Tokenizer.from_pretrained("./recipe_generator/gpt2_models/tokenizer/Ing")
     dataset = GPT2Dataset(recipe_steps, tokenizer, max_length=850)
 
     # Split into training and validation sets
@@ -126,7 +126,7 @@ def load_data_and_models():
     configuration = GPT2Config.from_pretrained('gpt2', output_hidden_states=False)
 
     # instantiate the model
-    model = GPT2LMHeadModel.from_pretrained("./polls/gpt2_models/TrainRecipeBox/Ing")#"gpt2", config=configuration)#('./models/RecipeBoxTrained')#
+    model = GPT2LMHeadModel.from_pretrained("./recipe_generator/gpt2_models/TrainRecipeBox/Ing")#"gpt2", config=configuration)#('./models/RecipeBoxTrained')#
 
     # this step is necessary because I've added some tokens (bos_token, etc) to the embeddings
     # otherwise the tokenizer and model tensors won't match up
@@ -149,16 +149,17 @@ def load_data_and_models():
 import os
 def load_models_only():
     ## Model and tokeniser
-    tokenizer = GPT2Tokenizer.from_pretrained('gpt2', bos_token='<|startoftext|>', eos_token='<|endoftext|>', pad_token='<|pad|>') #gpt2-medium
-    tokenizer.add_special_tokens(
-    	{'additional_special_tokens': ['<|startofing|>', '<|endofing|>', '<|ingseparator|>']}
-    )
+    #tokenizer = GPT2Tokenizer.from_pretrained('gpt2', bos_token='<|startoftext|>', eos_token='<|endoftext|>', pad_token='<|pad|>') #gpt2-medium
+    #tokenizer.add_special_tokens(
+    #	{'additional_special_tokens': ['<|startofing|>', '<|endofing|>', '<|ingseparator|>']}
+    #)
 
-    tokenizer = GPT2Tokenizer.from_pretrained("./polls/gpt2_models/tokenizer/Ing")
+    tokenizer = GPT2Tokenizer.from_pretrained("./recipe_generator/gpt2_models/tokenizer/Ing")
     # instantiate the model
-    configuration = GPT2Config.from_pretrained('gpt2', output_hidden_states=False)
+    #configuration = GPT2Config.from_pretrained('gpt2', output_hidden_states=False)
 
-    model = GPT2LMHeadModel.from_pretrained("gpt2", config=configuration)#"./polls/gpt2_models/TrainRecipeBox/Ing")#"gpt2", config=configuration)#('./models/RecipeBoxTrained')#
+    #model = GPT2LMHeadModel.from_pretrained("gpt2", config=configuration)#"./recipe_generator/gpt2_models/TrainRecipeBox/Ing")#"gpt2", config=configuration)#('./models/RecipeBoxTrained')#
+    model = GPT2LMHeadModel.from_pretrained("./recipe_generator/gpt2_models/TrainRecipeBox/Ing")
 
     # this step is necessary because I've added some tokens (bos_token, etc) to the embeddings
     # otherwise the tokenizer and model tensors won't match up
@@ -258,9 +259,9 @@ def generate_sample_from_user(model, ing_list, tokenizer, device, complete=True)
     #print("{}: {}".format(i, tokenizer.decode(sample_output, skip_special_tokens=False)))
 
 def get_recipe_with_string_input(ing_list, complete):
-    model, tokenizer, device = load_models_only()
-    ing_list = ing_list.lower().split(', ')
-    return generate_sample_from_user(model, ing_list, tokenizer, device, complete=complete)
+    #model, tokenizer, device = load_models_only()
+    #ing_list = ing_list.lower().split(', ')
+    return "We did it!!"#generate_sample_from_user(model, ing_list, tokenizer, device, complete=complete)
 
 
 if __name__ == '__main__':

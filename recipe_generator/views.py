@@ -35,20 +35,25 @@ class OutputPageView(ListView):
 #        return IngredientList.objects
 
 def home(request):
-
     if request.method == "POST":
         ing_form = IngredientListForm(request.POST)
         if ing_form.is_valid():
-            ing_form = ing_form.save()
-            context = {"ing_list_obj": ing_form}
+            ing_form.save()
+            ing_list_obj =  IngredientList.objects.last()
+
+            ing_list_obj.get_recipe()
+            ing_list_obj.save()
+
+            saved_ingredients_list = IngredientList.objects.all()
+            context = {"ing_list_obj": ing_list_obj, "saved_ingredients_list":saved_ingredients_list}
             messages.success(request, ('Your ingredients were successfully added!'))
         else:
             messages.error(request, 'Error saving form')
-        return redirect('recipe_generator/output.html')
+        return redirect('/output')
     
     ing_form = IngredientListForm()
-    saved_ingredient_lists = IngredientList.objects.all()
-    return render(request=request, template_name='recipe_generator/home.html', context={'ing_form':ing_form, 'saved_ingredient_lists':saved_ingredient_lists})
+    saved_ingredients_list = IngredientList.objects.all()
+    return render(request=request, template_name='recipe_generator/home.html', context={'ing_form':ing_form, 'saved_ingredients_list':saved_ingredients_list})
 
 def output(request):
     ing_list_obj =  IngredientList.objects.last()# get_object_or_404(IngredientList, pk=ing_list_obj_id)

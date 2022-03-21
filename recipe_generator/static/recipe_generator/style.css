@@ -56,3 +56,16 @@ input {
 	background-image: linear-gradient(#1e5f49, #e5ecec);
 	font-weight: bold;
 }
+
+.recipecolumn25 {
+	box-sizing: border-box;
+	width: calc(33% - 10px);
+	text-align: center;
+    border: solid;
+    border-color: #1e5f49;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-radius: 20px;
+	background-image: linear-gradient(#1e5f49, #e5ecec);
+	font-weight: bold;
+}
