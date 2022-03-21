@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 import sys
 #This does not work on mac I guess
 sys.path.append('.\\scripts')
@@ -23,3 +24,4 @@ class IngredientList(models.Model):
     
     def __str__(self):
         return self.tag
+
