@@ -8,7 +8,7 @@ sys.path.append('../mlasterchef/scripts/')
 
 from interface import get_recipe_with_string_input
 
-# Create your models here.
+# Create your models here. 
 class TestRecipe(models.Model):
     name = models.CharField(max_length=255)
 

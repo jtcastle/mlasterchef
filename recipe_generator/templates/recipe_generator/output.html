@@ -12,19 +12,19 @@
 </head>
 <body>
     {% block content %}
-    <!--
-    <div class="center">
+    
+    <!-- <div class="center">
         <h1>Sample Output</h1>
         !-- <p> {{ object_list }} </p> I have zero fucking clue why "object_list" is outputted no matter what the fuck I try. Like this is the only goddamn place it is defined but evidently somehow it still holds data
         !-- Nevermind. Apparently "object_list" is not just a made up name
     
         <p> You searched for:  {{ object_list }} </p>
     
-    </div>
+    </div> -->
 
     <div class="column25">
         <h2>
-            A Lemon Drizzle Cake That'll Make You Fall in Love
+            {{ ing_list_obj.tag }}
         </h2>
         <a href=#>
             <img src="{% static 'recipe_generator/lemon_love.png' %}" class="center" width=90% lt="lemon cake">
@@ -32,28 +32,17 @@
         <h3>
             Ingredients
         </h3>
-        <ul>
-            !-- This would be the saved user input --
-            <li>Lemons</li>
-            <li>Milk</li>
-            <li>Sugar</li>
-            <li>Love</li>
-        </ul>
+        <p>
+            {{ ing_list_obj.ing_list }}
+        </p>
         <h3>
             Instructions
         </h3>
         <p>
-            !-- This would be the previously generated output --
-            <ul>
-                <li>Preheat the oven to 350</li>
-                <li>Mix ingredients</li>
-                <li>Bake for 35 min</li>
-                <li>Drizzle with love</li>
-                <li>Serve warm</li>
-            </ul>
+            {{ ing_list_obj.recipe }}
         </p>
     </div>
-    -->
+   
     <ul>
         <pre>{{ ing_list_obj.recipe }}</pre>
     </ul>
