@@ -1,6 +1,9 @@
 from django.db import models
 import sys
+#This does not work on mac I guess
 sys.path.append('.\\scripts')
+#This works for macs
+sys.path.append('../mlasterchef/scripts/')
 
 from interface import get_recipe_with_string_input
 
