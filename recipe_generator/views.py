@@ -38,23 +38,26 @@ def home(request):
     if request.method == "POST":
         ing_form = IngredientListForm(request.POST)
         if ing_form.is_valid():
-            ing_form.save()
-            ing_list_obj =  IngredientList.objects.last()
-
-            ing_list_obj.get_recipe()
-            ing_list_obj.save()
-
-            saved_ingredients_list = IngredientList.objects.all()
-            context = {"ing_list_obj": ing_list_obj, "saved_ingredients_list":saved_ingredients_list}
+            ing_form = ing_form.save()
+            saved_ingredients_list = IngredientList.objects.all
             messages.success(request, ('Your ingredients were successfully added!'))
         else:
             messages.error(request, 'Error saving form')
-        return redirect('/output')
+        return redirect('loading')
     
     ing_form = IngredientListForm()
     saved_ingredients_list = IngredientList.objects.all()
     return render(request=request, template_name='recipe_generator/home.html', context={'ing_form':ing_form, 'saved_ingredients_list':saved_ingredients_list})
 
-def output(request):
-    ing_list_obj =  IngredientList.objects.last()# get_object_or_404(IngredientList, pk=ing_list_obj_id)
+def output(request, pk=None):
+    ing_list_obj = IngredientList.objects.last()
+    ing_list_obj.get_recipe()
+    ing_list_obj.save()
     return render(request, 'recipe_generator/output.html', {'ing_list_obj': ing_list_obj,})
+
+def recipe(request, ing_list_obj_id):
+    ing_list_obj =  get_object_or_404(IngredientList, pk=ing_list_obj_id)
+    return render(request, 'recipe_generator/output.html', {'ing_list_obj': ing_list_obj,})
+
+def loading(request):
+    return render(request, 'recipe_generator/loading.html')

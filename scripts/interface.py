@@ -3,6 +3,7 @@ import pandas as pd
 import ast
 import _pickle as pickle
 from os import path
+import time
 
 import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt
@@ -261,6 +262,7 @@ def generate_sample_from_user(model, ing_list, tokenizer, device, complete=True)
 def get_recipe_with_string_input(ing_list, complete):
     #model, tokenizer, device = load_models_only()
     #ing_list = ing_list.lower().split(', ')
+    time.sleep(5)
     return "We did it!!"#generate_sample_from_user(model, ing_list, tokenizer, device, complete=complete)
 
 
