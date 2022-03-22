@@ -17,11 +17,27 @@ class IngredientList(models.Model):
     ing_list = models.CharField(max_length = 400)
     complete = models.BooleanField("End of Ingredients?")
     recipe = models.CharField(max_length = 850, default="Recipe_Placeholder")
+    output_ingredients = models.CharField(max_length = 850, default="ing_Placeholder")
+    output_steps = models.CharField(max_length = 850, default="steps_Placeholder")
 
     def get_recipe(self):
         self.recipe = get_recipe_with_string_input(self.ing_list, self.complete)
-        return self.recipe
+        self.clean_recipe()
     
+    def clean_recipe(self):
+        clean = self.recipe.split(' <|endofing|> <|startoftext|>')
+        output_ingredients = clean[0] + '</li>'
+        output_steps = '<li>' + clean[1]
+
+        output_ingredients = output_ingredients.replace('<|startofing|>', '<li>')
+        output_ingredients = output_ingredients.replace(' <|ingseparator|> ', '</li> <li>')
+
+        output_steps = output_steps.replace('<|endoftext|>', '</li>')
+        output_steps = output_steps.replace('. ', '</li> <li>')
+
+        self.output_ingredients = output_ingredients
+        self.output_steps = output_steps
+
     def __str__(self):
         return self.tag
 

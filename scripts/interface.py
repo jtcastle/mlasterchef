@@ -247,14 +247,15 @@ def generate_sample_from_user(model, ing_list, tokenizer, device, complete=True)
     for i, sample_output in enumerate(sample_outputs):
         if i==1:
             output = tokenizer.decode(sample_output, skip_special_tokens=False)
-
-            output = output.replace('<|startofing|>', "Ingredients\n  ~")
-            output = output.replace('<|endofing|> <|startoftext|>', "\nRecipe Steps\n   -")
-            output = output.replace('<|endoftext|>', "\n")
             output = output.replace('<|pad|>', "")
-            output = output.replace(' <|ingseparator|> ', ",\n  ~")
 
-            output = output.replace('. ', ".\n   -")
+            #output = output.replace('<|startofing|>', "Ingredients\n  ~")
+            #output = output.replace('<|endofing|> <|startoftext|>', "\nRecipe Steps\n   -")
+            #output = output.replace('<|endoftext|>', "\n")
+            #output = output.replace('<|pad|>', "")
+            #output = output.replace(' <|ingseparator|> ', ",\n  ~")
+
+            #output = output.replace('. ', ".\n   -")
 
     return output
     #print("{}: {}".format(i, tokenizer.decode(sample_output, skip_special_tokens=False)))
@@ -263,7 +264,7 @@ def get_recipe_with_string_input(ing_list, complete):
     #model, tokenizer, device = load_models_only()
     #ing_list = ing_list.lower().split(', ')
     time.sleep(5)
-    return "We did it!!"#generate_sample_from_user(model, ing_list, tokenizer, device, complete=complete)
+    return "<|startofing|> ing1 <|ingseparator|> ing2 <|ingseparator|> ing3 <|endofing|> <|startoftext|> step1. step2. step3 <|endoftext|>" #generate_sample_from_user(model, ing_list, tokenizer, device, complete=complete)
 
 
 if __name__ == '__main__':

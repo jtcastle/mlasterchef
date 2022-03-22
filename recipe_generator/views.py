@@ -49,14 +49,19 @@ def home(request):
     saved_ingredients_list = IngredientList.objects.all()
     return render(request=request, template_name='recipe_generator/home.html', context={'ing_form':ing_form, 'saved_ingredients_list':saved_ingredients_list})
 
-def output(request, pk=None):
+def output(request):
     ing_list_obj = IngredientList.objects.last()
     ing_list_obj.get_recipe()
     ing_list_obj.save()
-    return render(request, 'recipe_generator/output.html', {'ing_list_obj': ing_list_obj,})
+    return redirect('recipe', ing_list_obj.id)
 
 def recipe(request, ing_list_obj_id):
     ing_list_obj =  get_object_or_404(IngredientList, pk=ing_list_obj_id)
+    if (request.GET.get('refreshbtn')):
+        ing_list_obj.get_recipe()
+        ing_list_obj.save()
+        return redirect('recipe', ing_list_obj.id)
+
     return render(request, 'recipe_generator/output.html', {'ing_list_obj': ing_list_obj,})
 
 def loading(request):

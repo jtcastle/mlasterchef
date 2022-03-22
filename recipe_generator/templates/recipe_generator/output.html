@@ -26,23 +26,33 @@
         <h2>
             {{ ing_list_obj.tag }}
         </h2>
-        <a href=#>
+        <a>
             <img src="{% static 'recipe_generator/lemon_love.png' %}" class="center" width=90% lt="lemon cake">
         </a>
         <h3>
-            Ingredients
+            User Input
         </h3>
         <p>
             {{ ing_list_obj.ing_list }}
         </p>
+
         <h3>
-            Instructions
+            Generated Ingredients
         </h3>
-        <pre>
-            {{ ing_list_obj.recipe }}
-        </pre>
+        <ul>
+            {{ing_list_obj.output_ingredients|safe}}
+        </ul>
+        <h3>
+            Generated Recipe
+        </h3>
+        <ol>
+            {{ing_list_obj.output_steps|safe}}
+        </ol>
+        <form action="#" method="get">
+            <input type="submit" class="btn" value="Generate New Recipe!" name="refreshbtn">
+        </form>
     </div>
-   
+    
     {% endblock %}
 </body>
 </html>
