@@ -148,7 +148,7 @@ def load_data_and_models():
     return model, validation_dataloader, tokenizer, device
 
 import os
-def load_models_only():
+def load_models_only(seed_val):
     ## Model and tokeniser
     #tokenizer = GPT2Tokenizer.from_pretrained('gpt2', bos_token='<|startoftext|>', eos_token='<|endoftext|>', pad_token='<|pad|>') #gpt2-medium
     #tokenizer.add_special_tokens(
@@ -171,7 +171,7 @@ def load_models_only():
     #model.cuda()
 
     # Set the seed value all over the place to make this reproducible.
-    seed_val = 45
+    #seed_val = 45
 
     random.seed(seed_val)
     np.random.seed(seed_val)
@@ -261,10 +261,12 @@ def generate_sample_from_user(model, ing_list, tokenizer, device, complete=True)
     #print("{}: {}".format(i, tokenizer.decode(sample_output, skip_special_tokens=False)))
 
 def get_recipe_with_string_input(ing_list, complete):
-    #model, tokenizer, device = load_models_only()
-    #ing_list = ing_list.lower().split(', ')
-    time.sleep(5)
-    return "<|startofing|> ing1 <|ingseparator|> ing2 <|ingseparator|> ing3 <|endofing|> <|startoftext|> step1. step2. step3 <|endoftext|>" #generate_sample_from_user(model, ing_list, tokenizer, device, complete=complete)
+    seed_val = random.randint(1, 100)
+    model, tokenizer, device = load_models_only(seed_val)
+    ing_list = ing_list.lower().split(', ')
+    #time.sleep(5)
+    #return "<|startofing|> ing1 <|ingseparator|> ing2 <|ingseparator|> ing3 <|endofing|> <|startoftext|> step1. step2. step3 <|endoftext|>" #
+    return generate_sample_from_user(model, ing_list, tokenizer, device, complete=complete)
 
 
 if __name__ == '__main__':
