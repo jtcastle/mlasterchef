@@ -266,7 +266,7 @@ def get_recipe_with_string_input(ing_list, complete):
     #ing_list = ing_list.lower().split(', ')
     time.sleep(5)
     return "<|startofing|> ing1 <|ingseparator|> ing2 <|ingseparator|> ing3 <|endofing|> <|startoftext|> step1. step2. step3 <|endoftext|>" #
-    #return generate_sample_from_user(model, ing_list, tokenizer, device, complete=complete)
+#return generate_sample_from_user(model, ing_list, tokenizer, device, complete=complete)
 
 
 if __name__ == '__main__':
