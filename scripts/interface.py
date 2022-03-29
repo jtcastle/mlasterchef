@@ -261,12 +261,12 @@ def generate_sample_from_user(model, ing_list, tokenizer, device, complete=True)
     #print("{}: {}".format(i, tokenizer.decode(sample_output, skip_special_tokens=False)))
 
 def get_recipe_with_string_input(ing_list, complete):
-    seed_val = random.randint(1, 100)
-    model, tokenizer, device = load_models_only(seed_val)
-    ing_list = ing_list.lower().split(', ')
-    #time.sleep(5)
-    #return "<|startofing|> ing1 <|ingseparator|> ing2 <|ingseparator|> ing3 <|endofing|> <|startoftext|> step1. step2. step3 <|endoftext|>" #
-    return generate_sample_from_user(model, ing_list, tokenizer, device, complete=complete)
+    #seed_val = random.randint(1, 100)
+    #model, tokenizer, device = load_models_only(seed_val)
+    #ing_list = ing_list.lower().split(', ')
+    time.sleep(5)
+    return "<|startofing|> ing1 <|ingseparator|> ing2 <|ingseparator|> ing3 <|endofing|> <|startoftext|> step1. step2. step3 <|endoftext|>" #
+    #return generate_sample_from_user(model, ing_list, tokenizer, device, complete=complete)
 
 
 if __name__ == '__main__':
