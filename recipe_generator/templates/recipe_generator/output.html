@@ -35,6 +35,16 @@
         <p>
             {{ ing_list_obj.ing_list }}
         </p>
+        <h3>
+            End of Ingredient List?
+        </h3>
+        <p>
+            {{ ing_list_obj.complete }}
+        </p>
+
+        <form action="#" method="get">
+            <input type="submit" class="btn" value="Switch it!" name="complete_btn">
+        </form>
 
         <h3>
             Generated Ingredients
@@ -51,6 +61,7 @@
         <form action="#" method="get">
             <input type="submit" class="btn" value="Generate New Recipe!" name="refreshbtn">
         </form>
+        
     </div>
     
     {% endblock %}

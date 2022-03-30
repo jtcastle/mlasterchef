@@ -61,6 +61,11 @@ def recipe(request, ing_list_obj_id):
         ing_list_obj.get_recipe()
         ing_list_obj.save()
         return redirect('recipe', ing_list_obj.id)
+    
+    if (request.GET.get('complete_btn')):
+        ing_list_obj.complete = not ing_list_obj.complete
+        ing_list_obj.save()
+        return redirect('recipe', ing_list_obj.id)
 
     return render(request, 'recipe_generator/output.html', {'ing_list_obj': ing_list_obj,})
 
