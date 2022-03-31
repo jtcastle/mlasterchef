@@ -20,6 +20,16 @@ body {
     background-color: var(--lightmaincolor);
 }
 
+ul.a {
+    list-style-position: inside;
+    text-align: center;
+}
+
+ol.a {
+    list-style-position: inside;
+    text-align: center;
+}
+
 h1 {
     color: black;
     font-family: Open Sans, Arial, Helvetica, sans-serif;
@@ -113,7 +123,7 @@ input:focus {
     width: 50%;
     min-height: 175px;
 	margin: 0 auto;
-	text-align: center;
+	text-align: left;
     border: solid;
     border-color: var(--darkmaincolor);
 	padding-top: 15px;

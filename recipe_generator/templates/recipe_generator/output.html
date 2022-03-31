@@ -49,13 +49,27 @@
         <h3>
             Generated Ingredients
         </h3>
-        <ul>
+        <style>
+            ul {
+                text-align: left;
+                list-style-position: outside;
+                padding-left:20%;
+                padding-right: 10%;
+            }
+            ol {
+                text-align: left;
+                list-style-position: outside;
+                padding-left:20%;
+                padding-right: 10%;
+            }
+        </style>
+        <ul class="a">
             {{ing_list_obj.output_ingredients|safe}}
         </ul>
         <h3>
             Generated Recipe
         </h3>
-        <ol>
+        <ol class="a">
             {{ing_list_obj.output_steps|safe}}
         </ol>
         <form action="#" method="get">
