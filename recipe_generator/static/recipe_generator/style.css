@@ -7,13 +7,28 @@
     --darkmaincolor: #1e5f49;
 }
 
+.logo {
+    display: block;
+    width: 30%;
+	margin-left: auto;
+	margin-right: auto;
+    margin: auto;
+    text-align: center;
+}
+
 body {
     background-color: var(--lightmaincolor);
 }
 
+h1 {
+    color: black;
+    font-family: Open Sans, Arial, Helvetica, sans-serif;
+    font-style: bold;
+}
+
 h2 {
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Open Sans, Arial, Helvetica, sans-serif;
     font-style: bold;
 }
 
@@ -23,6 +38,16 @@ h3 {
     font-style: bold;
 }
 
+p {
+    color: black;
+    font-family: Open Sans, Arial, Helvetica, sans-serif;
+    font-style: bold;
+}
+
+a, a:hover, a:focus, a:active, a:visited {
+    text-decoration: none;
+    color: inherit;
+}
 
 .center {
 	display: block;
@@ -67,7 +92,7 @@ input:focus {
 }
 
 .column25 {
-	/* box-sizing: border-box; */
+	box-sizing: border-box;
 	float: left;
     width: calc(33% - 10px);
     min-height: 175px;
@@ -82,3 +107,55 @@ input:focus {
     font-weight: bold;
     overflow: scroll;
 }
+
+.columnwide {
+    display: block;
+    width: 50%;
+    min-height: 175px;
+	margin: 0 auto;
+	text-align: center;
+    border: solid;
+    border-color: var(--darkmaincolor);
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-radius: 20px;
+	background-image: linear-gradient(var(--darkmaincolor), var(--lightmaincolor));
+    font-weight: bold;
+    overflow: scroll;
+
+}
+
+@media screen and (max-width: 850px){
+	.column25 {
+        display: block;
+        width: 80%;
+        margin: 5% auto;
+        float: none;
+    }
+
+    .columnwide {
+        width: 90%;
+    }
+
+    .logo {
+        width:65%
+    }
+
+    input {
+        width: 75%;
+    }
+
+    .animation {
+        width: 80%;
+    }
+}
+
+footer {
+    margin-top: 1em;
+    padding: 1em;
+	color: white;
+	background-color: var(--darkmaincolor);
+	clear: left;
+    text-align: center;
+}
+

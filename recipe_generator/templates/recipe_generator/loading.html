@@ -1,13 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="0; url='http://127.0.0.1:8000/output'" />
     {% load static %}
+    <link rel="stylesheet" type="text/css" href=" {% static 'recipe_generator/style.css' %}">
 </head>
 
 <body>
-    <ul>
-        <p>Stirring up your recipe. It'll be ready in a gif ;)</p>
-    </ul>
     <a>
-        <img src="{% static 'recipe_generator/stir.gif' %}" class="center" width=40% lt="lemon cake">
+        <img src="{% static 'recipe_generator/stir.gif' %}" class="animation" lt="lemon cake">
     </a>
+    <h1 class="center">
+        Stirring up your recipe. It'll be ready in a gif ;)
+    </h1>
 </body>
