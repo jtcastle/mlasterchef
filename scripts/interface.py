@@ -155,12 +155,12 @@ def load_models_only(seed_val):
     #	{'additional_special_tokens': ['<|startofing|>', '<|endofing|>', '<|ingseparator|>']}
     #)
 
-    tokenizer = GPT2Tokenizer.from_pretrained("./recipe_generator/gpt2_models/tokenizer/Ing")
+    tokenizer = GPT2Tokenizer.from_pretrained("./recipe_generator/gpt2_models/tokenizer")
     # instantiate the model
     #configuration = GPT2Config.from_pretrained('gpt2', output_hidden_states=False)
 
     #model = GPT2LMHeadModel.from_pretrained("gpt2", config=configuration)#"./recipe_generator/gpt2_models/TrainRecipeBox/Ing")#"gpt2", config=configuration)#('./models/RecipeBoxTrained')#
-    model = GPT2LMHeadModel.from_pretrained("./recipe_generator/gpt2_models/TrainRecipeBox/Ing")
+    model = GPT2LMHeadModel.from_pretrained("./recipe_generator/gpt2_models/model")
 
     # this step is necessary because I've added some tokens (bos_token, etc) to the embeddings
     # otherwise the tokenizer and model tensors won't match up
