@@ -16,6 +16,7 @@
     text-align: center;
 }
 
+
 body {
     background-color: var(--lightmaincolor);
 }
@@ -36,10 +37,19 @@ h1 {
     font-style: bold;
 }
 
+@font-face {
+    font-family: 'Coffee';
+    src: url('/Coffee.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}
+
 h2 {
     color: white;
-    font-family: Open Sans, Arial, Helvetica, sans-serif;
+    font-family: Open Sans, Arial, Helvetica, sans-serif, 'Coffee';
     font-style: bold;
+}
+
+.footer {
+    font-family: 'Coffee'
 }
 
 h3 {
@@ -108,7 +118,7 @@ input:focus {
     min-height: 200px;
 	margin: 5px;
 	text-align: center;
-    border: solid;
+    border: none;
     border-color: var(--darkmaincolor);
 	padding-top: 15px;
 	padding-bottom: 15px;
@@ -123,7 +133,7 @@ input:focus {
     min-height: 175px;
 	margin: 0 auto;
 	text-align: center;
-    border: solid;
+    border: none;
     border-color: var(--darkmaincolor);
 	padding-top: 15px;
 	padding-bottom: 15px;
@@ -165,5 +175,8 @@ footer {
 	background-color: var(--darkmaincolor);
 	clear: left;
     text-align: center;
+    font: inherit;
+    font-family: 'Coffee';
 }
+
 
