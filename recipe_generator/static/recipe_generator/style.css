@@ -105,7 +105,7 @@ input:focus {
 	box-sizing: border-box;
 	float: left;
     width: calc(33% - 10px);
-    min-height: 175px;
+    min-height: 200px;
 	margin: 5px;
 	text-align: center;
     border: solid;
