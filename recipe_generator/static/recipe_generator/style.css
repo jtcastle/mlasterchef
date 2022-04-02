@@ -38,18 +38,19 @@ h1 {
 }
 
 @font-face {
-    font-family: 'Coffee';
-    src: url('/Coffee.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+    font-family: 'Coffee_fam';
+    src: url('Coffee.woff') format('woff'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
 }
 
 h2 {
     color: white;
-    font-family: Open Sans, Arial, Helvetica, sans-serif, 'Coffee';
+    font-family: Open Sans, Arial, Helvetica, sans-serif;
     font-style: bold;
 }
 
 .footer {
-    font-family: 'Coffee'
+    font-family: 'Coffee_fam';
+    font-size: 25pt;
 }
 
 h3 {
@@ -62,6 +63,11 @@ p {
     color: black;
     font-family: Open Sans, Arial, Helvetica, sans-serif;
     font-style: bold;
+}
+
+.tm {
+    font-family: 'Coffee_fam';
+    font-size: 15pt;
 }
 
 a, a:hover, a:focus, a:active, a:visited {
@@ -176,7 +182,7 @@ footer {
 	clear: left;
     text-align: center;
     font: inherit;
-    font-family: 'Coffee';
+    font-family: 'Coffee_fam';
 }
 
 
