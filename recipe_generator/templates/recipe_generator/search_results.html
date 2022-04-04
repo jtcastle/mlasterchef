@@ -12,6 +12,31 @@
 <body>
     {% block content %}
 
+    <div class="center">
+        <h1>Search Results</h1>
+        <h3>{{object_list|length}} recipies found!</h4>
+    </div>
+
+    {% if object_list|length >= 1 %} <!-- CHANGED: the list object is saved_ingredients_list, not ing_list_obj. I want this to iterate over IngredientList.Objects.All but I dont know how -->
+        {% for item in object_list reversed %} <!--iteratiing over the list makes 'i' reference the actual object *now in reverse ;)-->
+            <a href="{% url 'recipe' item.id %}">
+                <div class="column25">
+                    <h2>
+                        {{ item.tag }} <!-- therefore this is how you would access the tag of the object-->
+                    </h2>
+                    <h3>
+                        Ingredients
+                    </h3>
+                    <p>
+                        {{ item.ing_list }}
+                    </p>
+
+                </div>
+            </a>
+        {% endfor %}
+    {% else %}
+        <p class="center">{{ object_list }}</p> <!-- can't access IngredientList.objects.all from the template cause its not in the context under that name. Needs the name we give it in the context which is saved_ingredients_lists-->
+    {% endif %}
 
     {% endblock %}
 </body>

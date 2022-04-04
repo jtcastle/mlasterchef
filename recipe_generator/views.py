@@ -71,3 +71,14 @@ def recipe(request, ing_list_obj_id):
 
 def loading(request):
     return render(request, 'recipe_generator/loading.html')
+
+class SearchResultsView(ListView):
+    model = IngredientList
+    template_name = 'recipe_generator/search_results.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = IngredientList.objects.filter(
+            Q(ing_list__icontains=query) | Q(tag__icontains=query)
+        )
+        return object_list

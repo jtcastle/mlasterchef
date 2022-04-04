@@ -19,7 +19,7 @@ class IngredientListForm(forms.ModelForm):
         labels = {
             "tag": "",
             "ing_list": "",
-            "complete": "Would like the generator to limit the recipe to the ingredients listed"
+            "complete": "Would you like the generator to limit the recipe to the ingredients listed"
         }
     
     # I dont really know what this does but it works and allows me to add placeholders
