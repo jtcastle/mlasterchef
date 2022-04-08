@@ -69,6 +69,7 @@ def recipe(request, ing_list_obj_id):
 
     return render(request, 'recipe_generator/output.html', {'ing_list_obj': ing_list_obj,})
 
+
 def loading(request):
     return render(request, 'recipe_generator/loading.html')
 

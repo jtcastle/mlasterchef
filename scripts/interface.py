@@ -262,6 +262,7 @@ def generate_sample_from_user(model, ing_list, tokenizer, device, complete=True)
 
 def get_recipe_with_string_input(ing_list, complete):
     seed_val = random.randint(1, 100)
+    print("seed_val: ", seed_val)
     model, tokenizer, device = load_models_only(seed_val)
     ing_list = ing_list.lower().split(', ')
     return generate_sample_from_user(model, ing_list, tokenizer, device, complete=complete)

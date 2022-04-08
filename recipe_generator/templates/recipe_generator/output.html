@@ -24,30 +24,49 @@
 
     <div class="columnwide">
         <h2>
+            <style>
+                h2 {
+                    font-weight:bolder
+                }
+            </style>
             {{ ing_list_obj.tag }}
         </h2>
         <a>
             <img src="{% static 'recipe_generator/cheese_fold.gif' %}" class="center" width=90% lt="lemon cake">
         </a>
         <h3>
-            User Input
+            <style>
+                h3 {
+                    font-weight:bolder
+                }
+            </style>
+            Input Ingredients:
         </h3>
         <p>
             {{ ing_list_obj.ing_list }}
         </p>
+
+        <h1></h1> <!-- Spacer -->
+
         <h3>
-            End of Ingredient List?
+            Let MLaster Chef add ingredients?
         </h3>
-        <p>
-            {{ ing_list_obj.complete }}
-        </p>
-
-        <form action="#" method="get">
-            <input type="submit" class="btn" value="Switch it!" name="complete_btn">
-        </form>
-
+        {% if ing_list_obj.complete %}
+            <form action="#" method="get">
+                <input type="submit" class='button2' value="No" name="complete_btn">
+            </form>
+        {% else %}
+            <form action="#" method="get">
+                <input type="submit" class='button2' value="Yes!" name="complete_btn">
+            </form>
+        {% endif %}
+        
+        <h3>~~~~~~~~~~~~~~~~~~~~~~~~~</h3> <!-- Spacer -->
+        <h1>
+            Chef's Recipe
+        </h1>
         <h3>
-            Generated Ingredients
+            Ingredients
         </h3>
         <style>
             ul {
@@ -67,13 +86,19 @@
             {{ing_list_obj.output_ingredients|safe}}
         </ul>
         <h3>
-            Generated Recipe
+            Recipe Steps
         </h3>
         <ol>
             {{ing_list_obj.output_steps|safe}}
         </ol>
         <form action="#" method="get">
-            <input type="submit" class="btn" value="Generate New Recipe!" name="refreshbtn">
+            <style>
+                input {
+                    font-family: "Coffee_fam";
+                    font-size: 25px !important
+                }
+            </style>
+            <input type="submit" class=button value="Generate New Recipe!" name="refreshbtn">
         </form>
         
     </div>

@@ -25,15 +25,29 @@ class IngredientList(models.Model):
         self.clean_recipe()
     
     def clean_recipe(self):
-        clean = self.recipe.split(' <|endofing|> <|startoftext|>')
+        clean = self.recipe.split(' <|endofing|> <|startoftext|> ')
+
         output_ingredients = clean[0] + '</li>'
-        output_steps = '<li>' + clean[1]
 
         output_ingredients = output_ingredients.replace('<|startofing|>', '<li>')
         output_ingredients = output_ingredients.replace(' <|ingseparator|> ', '</li> <li>')
 
+        #Removing any duplicatation of steps
+        first_steps = clean[1][:30]
+        if first_steps in clean[1][25:]:
+            dup = clean[1][30:].index(first_steps)
+            clean[1] = clean[1][:dup+29]
+        
+        #Removing any existing numbering
+        if clean[1][0] == '1':
+            output_steps = [item if len(item)>2 else None for item in clean[1].split('. ')]
+            while None in output_steps:
+                output_steps.remove(None)
+            output_steps = '<li>' + '</li> <li>'.join(output_steps)
+        else:
+            output_steps = '<li>' + clean[1].replace('. ', '</li> <li>')
+            
         output_steps = output_steps.replace('<|endoftext|>', '</li>')
-        output_steps = output_steps.replace('. ', '</li> <li>')
 
         self.output_ingredients = output_ingredients
         self.output_steps = output_steps
