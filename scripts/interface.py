@@ -173,8 +173,8 @@ def load_models_only(seed_val):
     # Set the seed value all over the place to make this reproducible.
     #seed_val = 45
 
-    random.seed(seed_val)
-    np.random.seed(seed_val)
+    #random.seed(seed_val)
+    #np.random.seed(seed_val)
     torch.manual_seed(seed_val)
     torch.cuda.manual_seed_all(seed_val)
 
@@ -240,7 +240,7 @@ def generate_sample_from_user(model, ing_list, tokenizer, device, complete=True)
     sample_outputs = model.generate(
         s_input_ids,#bos_token_id=random.randint(1,30000),
         do_sample=True,   
-        top_k=50, max_length = 200, top_p=0.95, num_return_sequences=1
+        top_k=50, max_length = 2000, top_p=0.95, num_return_sequences=1
                         )
 
     output = None
@@ -262,6 +262,7 @@ def generate_sample_from_user(model, ing_list, tokenizer, device, complete=True)
 
 def get_recipe_with_string_input(ing_list, complete):
     seed_val = random.randint(1, 100)
+    print(seed_val)
     print("seed_val: ", seed_val)
     model, tokenizer, device = load_models_only(seed_val)
     ing_list = ing_list.lower().split(', ')
