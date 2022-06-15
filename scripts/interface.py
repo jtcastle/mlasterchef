@@ -171,7 +171,7 @@ def load_models_only(seed_val):
     #model.cuda()
 
     # Set the seed value all over the place to make this reproducible.
-    #seed_val = 45
+    #seed_val = 45git status
 
     #random.seed(seed_val)
     #np.random.seed(seed_val)
