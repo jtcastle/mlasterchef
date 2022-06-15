@@ -1,7 +1,7 @@
 config==0.5.1
-Django==4.0.5
+django==4.0.5
 matplotlib==3.5.2
-nltk==3.7
+#nltk==3.7
 numpy==1.22.4
 pandas==1.4.2
 scikit_learn==1.1.1
