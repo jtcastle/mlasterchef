@@ -5,8 +5,8 @@ import sys
 sys.path.append('.\\scripts')
 #This works for macs
 sys.path.append('../mlasterchef/scripts/')
-
-from interface import get_recipe_with_string_input
+import interface
+#from .interface import get_recipe_with_string_input
 
 # Create your models here. 
 class TestRecipe(models.Model):
@@ -21,7 +21,7 @@ class IngredientList(models.Model):
     output_steps = models.TextField(default="steps_Placeholder")
 
     def get_recipe(self):
-        self.recipe = get_recipe_with_string_input(self.ing_list, self.complete)
+        self.recipe = interface.get_recipe_with_string_input(self.ing_list, self.complete)
         self.clean_recipe()
     
     def clean_recipe(self):

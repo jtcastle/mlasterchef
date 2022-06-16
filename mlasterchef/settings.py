@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-chv0(ja19^y&2h^5r_y!)+0fj&u#8^2u4a(caf8grhvt4rbgub
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['phoebepi.pythonanywhere.com']
 
 
 # Application definition
@@ -116,7 +116,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-
+STATIC_ROOT = "/home/phoebepi/mlasterchef/recipe_generator/static"
 STATIC_URL = 'static/'
 
 # Default primary key field type
