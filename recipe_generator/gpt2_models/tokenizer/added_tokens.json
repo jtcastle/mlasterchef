@@ -1,1 +1,7 @@
-{"<|startoftext|>": 50257, "<|pad|>": 50258, "<|startofing|>": 50259, "<|endofing|>": 50260, "<|ingseparator|>": 50261}
+{
+  "<|endofing|>": 50260,
+  "<|ingseparator|>": 50261,
+  "<|pad|>": 50258,
+  "<|startofing|>": 50259,
+  "<|startoftext|>": 50257
+}
